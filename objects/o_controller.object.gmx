@@ -53,7 +53,7 @@ base_h = 480;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Initialize Surface
+            <string>/// Initialize Surface &amp; View
 if (disp_w &gt; disp_h)
 {
     // portrait
@@ -74,7 +74,10 @@ view_hport[0] = disp_h;
 
 surface_resize(application_surface, view_wview[0], view_hview[0]);
 
-instance_create((view_wview[0] - 16) / 2, 16, o_snake);
+instance_create(16, view_hview[0] / 2, o_snake);
+view_object[0] = o_snake;
+view_hborder[0] = (view_wview[0] - o_snake.sprite_width) / 2;
+view_vborder[0] = (view_hview[0] - o_snake.sprite_height) / 2;
 </string>
           </argument>
         </arguments>
@@ -137,6 +140,8 @@ var display = string(disp_w) + "x" + string(disp_h) + " " + string(disp_w / 120)
 draw_text(view_wview[0] - string_width(display) - 16, 16, display);
 var screen = string(view_wview[0]) + "x" + string(view_hview[0]); 
 draw_text(view_wview[0] - string_width(screen) - 16, 32, screen);
+var key = string(mouse_button);
+draw_text(view_wview[0] - string_width(key) - 16, 48, key);
 </string>
           </argument>
         </arguments>
@@ -162,6 +167,30 @@ draw_sprite(s_none, 0, 64, 64);
 draw_sprite(s_none, 0, gui_w - 64, 64);
 draw_sprite(s_none, 0, gui_w - 64, gui_h - 64);
 draw_sprite(s_none, 0, 64, gui_h - 64);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="82">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Restar
+game_restart();
 </string>
           </argument>
         </arguments>

@@ -8,6 +8,8 @@
   <sprites name="sprites">
     <sprite>sprites\s_none</sprite>
     <sprite>sprites\s_snake</sprite>
+    <sprite>sprites\s_tail</sprite>
+    <sprite>sprites\s_apple</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -17,12 +19,13 @@
   <objects name="objects">
     <object>objects\o_controller</object>
     <object>objects\o_snake</object>
+    <object>objects\o_tail</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r_level1</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41898.3054283449</constant>
+    <constant name="GM_build_date">41898.3686000231</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>
