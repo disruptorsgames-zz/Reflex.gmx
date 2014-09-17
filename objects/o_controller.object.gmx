@@ -28,11 +28,15 @@
             <string>/// Initialize
 window_set_fullscreen(true);
 
+// screen &amp; display
 disp_w = display_get_width();
 disp_h = display_get_height();
 aspect = disp_w / disp_h;
 base_w = 640;
 base_h = 480;
+
+// math
+randomize();
 </string>
           </argument>
         </arguments>
@@ -78,6 +82,8 @@ instance_create(16, view_hview[0] / 2, o_snake);
 view_object[0] = o_snake;
 view_hborder[0] = (view_wview[0] - o_snake.sprite_width) / 2;
 view_vborder[0] = (view_hview[0] - o_snake.sprite_height) / 2;
+
+instance_create(x - 250, view_yview[0] + view_hview[0] / 2, o_vortex);
 </string>
           </argument>
         </arguments>
@@ -99,6 +105,8 @@ view_vborder[0] = (view_hview[0] - o_snake.sprite_height) / 2;
           <argument>
             <kind>1</kind>
             <string>/// Initialize GUI
+box_color = c_black;//make_colour_rgb(random(128), random(255), random(128));
+
 if (aspect &gt; 1)
 {
     //landscape
@@ -113,6 +121,33 @@ else
 }
 
 display_set_gui_maximise(disp_w / gui_w, disp_h / gui_h, 0, 0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Spawn
+if (current_time mod 128 == 0)
+    instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_wall);
+//if (current_time mod 64 == 0)
+    //instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_block);
 </string>
           </argument>
         </arguments>
@@ -163,10 +198,57 @@ draw_text(view_wview[0] - string_width(key) - 16, 48, key);
           <argument>
             <kind>1</kind>
             <string>/// Debug Boxes
-draw_sprite(s_none, 0, 64, 64);
-draw_sprite(s_none, 0, gui_w - 64, 64);
-draw_sprite(s_none, 0, gui_w - 64, gui_h - 64);
-draw_sprite(s_none, 0, 64, gui_h - 64);
+draw_sprite_ext(s_none, 0, 64, 64, 1, 1, 0, box_color, 1.0);
+draw_sprite_ext(s_none, 0, gui_w - 64, 64, 1, 1, 0, box_color, 1.0);
+draw_sprite_ext(s_none, 0, gui_w - 64, gui_h - 64, 1, 1, 0, box_color, 1.0);
+draw_sprite_ext(s_none, 0, 64, gui_h - 64, 1, 1, 0, box_color, 1.0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Follow
+if (instance_exists(o_snake))
+    x = o_snake.x;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Line
+draw_line_color(x - 200, view_yview[0], x - 200, view_yview[0] + view_hview[0], c_red, c_red);
 </string>
           </argument>
         </arguments>

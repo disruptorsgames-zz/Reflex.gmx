@@ -8,7 +8,7 @@
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
-  <colour>12632256</colour>
+  <colour>16777215</colour>
   <showcolour>-1</showcolour>
   <code>/// Initialize Game
 instance_create(0, 0, o_controller);</code>
