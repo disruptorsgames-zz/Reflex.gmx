@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>o_thing</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -26,74 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialize
-dir = random(360);
-scale = random(32) + 16;
-color = c_black;//make_colour_rgb(random(255), random(255), random(255));
-direction = 180;
-speed = random(1) + 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Shrink
-if (x &lt; o_controller.x - 184)
-{
-    move_towards_point(o_vortex.x, o_vortex.y, 2);
-    scale -= 0.25;
-}
-    
-if (scale &lt;= 0)
-    instance_destroy();
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Collision
-var inst = collision_line(x, y, x + lengthdir_x(scale, dir), y + lengthdir_y(scale, dir), o_snake, false, true);
-
-if (inst != noone)
-{
-    with (inst)
-    {
-        color = c_red;
-        alarm[0] = 15;
-        //instance_destroy();
-    }
-}
+angle = random(360);
+scale = random(30) + 30;
+base_c = c_black;
+color = c_black;
+spd = random(1) + 1;
+dir = 180;
 </string>
           </argument>
         </arguments>
@@ -117,11 +55,8 @@ if (inst != noone)
           <argument>
             <kind>1</kind>
             <string>/// Draw Sprite
-draw_sprite_ext(sprite_index, image_single, x, y, scale, scale, dir, color, 1.0);
-//draw_line_colour(x, y, x + lengthdir_x(scale, dir), y + lengthdir_y(scale, dir), c_red, c_red);
-//draw_rectangle_colour(x, y, x + lengthdir_x(scale, dir), y + lengthdir_y(scale, dir), c_red, c_red, c_red, c_red, true);
-//draw_triangle_colour(x, y, x, y, x  + lengthdir_x(scale, dir), y + lengthdir_y(scale, dir), c_red, c_red, c_red, true);
-draw_triangle_colour(x, y, x + lengthdir_x(scale, dir), y + lengthdir_y(scale, dir), x, y, c_red, c_red, c_red, true);
+draw_sprite_ext(sprite_index, image_single, x, y, scale, scale, angle, color, 1.0);
+draw_line_colour(x, y, x + lengthdir_x(scale, angle), y + lengthdir_y(scale, angle), c_red, c_red);
 </string>
           </argument>
         </arguments>

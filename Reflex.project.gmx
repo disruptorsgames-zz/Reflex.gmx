@@ -7,7 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\s_none</sprite>
-    <sprite>sprites\s_snake</sprite>
+    <sprite>sprites\s_blip</sprite>
     <sprite>sprites\s_tail</sprite>
     <sprite>sprites\s_wall</sprite>
   </sprites>
@@ -18,10 +18,11 @@
   </scripts>
   <objects name="objects">
     <object>objects\o_apple</object>
+    <object>objects\o_blip</object>
     <object>objects\o_block</object>
     <object>objects\o_controller</object>
-    <object>objects\o_snake</object>
     <object>objects\o_tail</object>
+    <object>objects\o_thing</object>
     <object>objects\o_vortex</object>
     <object>objects\o_wall</object>
   </objects>
@@ -29,7 +30,7 @@
     <room>rooms\r_level1</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41899.8018711921</constant>
+    <constant name="GM_build_date">41899.8353189468</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

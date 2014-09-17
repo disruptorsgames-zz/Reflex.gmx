@@ -29,6 +29,7 @@
 window_set_fullscreen(true);
 
 // screen &amp; display
+display_reset(0, true);
 disp_w = display_get_width();
 disp_h = display_get_height();
 aspect = disp_w / disp_h;
@@ -78,10 +79,10 @@ view_hport[0] = disp_h;
 
 surface_resize(application_surface, view_wview[0], view_hview[0]);
 
-instance_create(16, view_hview[0] / 2, o_snake);
-view_object[0] = o_snake;
-view_hborder[0] = (view_wview[0] - o_snake.sprite_width) / 2;
-view_vborder[0] = (view_hview[0] - o_snake.sprite_height) / 2;
+instance_create(16, view_hview[0] / 2, o_blip);
+view_object[0] = o_blip;
+view_hborder[0] = (view_wview[0] - o_blip.sprite_width) / 2;
+view_vborder[0] = (view_hview[0] - o_blip.sprite_height) / 2;
 
 instance_create(x - 250, view_yview[0] + view_hview[0] / 2, o_vortex);
 </string>
@@ -146,6 +147,8 @@ display_set_gui_maximise(disp_w / gui_w, disp_h / gui_h, 0, 0);
             <string>/// Spawn
 if (current_time mod 128 == 0)
     instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_wall);
+if (current_time mod 1337 == 0)
+    instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_apple);
 //if (current_time mod 64 == 0)
     //instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_block);
 </string>
@@ -225,8 +228,8 @@ draw_sprite_ext(s_none, 0, 64, gui_h - 64, 1, 1, 0, box_color, 1.0);
           <argument>
             <kind>1</kind>
             <string>/// Follow
-if (instance_exists(o_snake))
-    x = o_snake.x;
+if (instance_exists(o_blip))
+    x = o_blip.x;
 </string>
           </argument>
         </arguments>

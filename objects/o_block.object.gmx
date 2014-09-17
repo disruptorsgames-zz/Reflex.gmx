@@ -3,9 +3,9 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>o_thing</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -26,12 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialize
-dir = random(360);
 scale = random(32) + 32;
+base_c = c_black;
 color = c_black;//make_colour_rgb(random(255), random(255), random(255));
 type = choose(1, 2, 3);
-direction = 180;
-speed = random(1) + 1;
+spd = random(1) + 1;
+dir = 180;
 </string>
           </argument>
         </arguments>
@@ -134,11 +134,11 @@ switch(type)
     case 1:
     case 2:
         draw_rectangle_colour(x - scale, y - scale, x + scale, y + scale, color, color, color, color, false);
-        draw_rectangle_colour(x - scale, y - scale, x + scale, y + scale, c_red, c_red, c_red, c_red, true);
+        //draw_rectangle_colour(x - scale, y - scale, x + scale, y + scale, c_red, c_red, c_red, c_red, true);
         break;
     case 3:
         draw_circle_colour(x, y, scale, color, color, false);
-        draw_circle_colour(x, y, scale, c_red, c_red, true);
+        //draw_circle_colour(x, y, scale, c_red, c_red, true);
         break;
 }
 </string>
