@@ -27,10 +27,10 @@
             <kind>1</kind>
             <string>/// Initialize
 angle = random(360);
-base_c = c_maroon;
 color = c_maroon;
+base_c = color;
 scale = random(1) + 1;
-spd = random(6) + 4;
+spd = random(2) + 2;
 dir = 180;
 </string>
           </argument>

@@ -28,8 +28,8 @@
             <string>/// Initialize
 angle = random(360);
 scale = random(30) + 30;
-base_c = c_black;
-color = c_black;
+color = c_black;//make_color_rgb(random(255), random(255), random(255));
+base_c = color;
 spd = random(1) + 1;
 dir = 180;
 </string>
