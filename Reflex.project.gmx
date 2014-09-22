@@ -16,21 +16,23 @@
   <scripts name="scripts">
     <script>scripts\ternary.gml</script>
   </scripts>
+  <fonts name="fonts"/>
   <objects name="objects">
-    <object>objects\o_apple</object>
     <object>objects\o_blip</object>
     <object>objects\o_block</object>
     <object>objects\o_controller</object>
+    <object>objects\o_powerup</object>
     <object>objects\o_tail</object>
     <object>objects\o_thing</object>
     <object>objects\o_vortex</object>
     <object>objects\o_wall</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\r_level1</room>
+    <room>rooms\r_menu</room>
+    <room>rooms\r_world</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41900.1929722106</constant>
+    <constant name="GM_build_date">41904.2665976273</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

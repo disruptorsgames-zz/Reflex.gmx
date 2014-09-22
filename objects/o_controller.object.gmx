@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -28,7 +28,12 @@
             <string>/// Initialize
 window_set_fullscreen(true);
 
+// GUI
+box_color = c_black;//make_colour_rgb(random(128), random(255), random(128));
+credits = 0;
+
 // screen &amp; display
+window_set_cursor(cr_none);
 display_reset(0, true);
 disp_w = display_get_width();
 disp_h = display_get_height();
@@ -40,34 +45,10 @@ base_h = 480;
 randomize();
 
 // create instances
-instance_create(16, view_hview[0] / 2, o_blip);
+if (room == r_world)
+    instance_create(16, view_hview[0] / 2, o_blip);
+    
 instance_create(x - 250, view_yview[0] + view_hview[0] / 2, o_vortex);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Calculate Display
-disp_w = display_get_width();
-disp_h = display_get_height();
-aspect = disp_w / disp_h;
 </string>
           </argument>
         </arguments>
@@ -109,9 +90,12 @@ view_hport[0] = disp_h;
 
 surface_resize(application_surface, view_wview[0], view_hview[0]);
 
-view_object[0] = o_blip;
-view_hborder[0] = (view_wview[0] - o_blip.sprite_width) / 2;
-view_vborder[0] = (view_hview[0] - o_blip.sprite_height) / 2;
+if (instance_exists(o_blip))
+{
+    view_object[0] = o_blip;
+    view_hborder[0] = (view_wview[0] - o_blip.sprite_width) / 2;
+    view_vborder[0] = (view_hview[0] - o_blip.sprite_height) / 2;
+}
 </string>
           </argument>
         </arguments>
@@ -133,8 +117,6 @@ view_vborder[0] = (view_hview[0] - o_blip.sprite_height) / 2;
           <argument>
             <kind>1</kind>
             <string>/// Initialize GUI
-box_color = c_black;//make_colour_rgb(random(128), random(255), random(128));
-
 if (aspect &gt; 1)
 {
     //landscape
@@ -175,7 +157,7 @@ display_set_gui_maximise(disp_w / gui_w, disp_h / gui_h, 0, 0);
 if (current_time mod 128 == 0)
     instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_wall);
 if (current_time mod 1337 == 0)
-    instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_apple);
+    instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_powerup);
 //if (current_time mod 64 == 0)
     //instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_block);
 </string>
@@ -236,6 +218,29 @@ draw_sprite_ext(s_none, 0, 64, gui_h - 64, 1, 1, 0, box_color, 1.0);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Game Info
+var creds = "Credits: " + string(credits);
+draw_text(view_wview[0] - string_width(creds) - 16, view_hview[0] - string_height(creds) - 16, creds);
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
@@ -254,31 +259,10 @@ draw_sprite_ext(s_none, 0, 64, gui_h - 64, 1, 1, 0, box_color, 1.0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Follow
-if (instance_exists(o_blip))
-    x = o_blip.x;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/// Line
-draw_line_color(x - 200, view_yview[0], x - 200, view_yview[0] + view_hview[0], c_red, c_red);
+x = view_xview[0] + 200;
+y = view_yview[0];
+draw_line_color(x, y, x, y + view_hview[0], c_red, c_red);
 </string>
           </argument>
         </arguments>

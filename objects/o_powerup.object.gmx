@@ -27,11 +27,17 @@
             <kind>1</kind>
             <string>/// Initialize
 angle = random(360);
-color = c_maroon;
+color = make_color_rgb(random(255), random(255), random(255));
 base_c = color;
 scale = random(1) + 1;
 spd = random(2) + 2;
 dir = 180;
+shrink = 0.025;
+
+// power
+r = colour_get_red(color);
+g = colour_get_green(color);
+b = colour_get_blue(color);
 </string>
           </argument>
         </arguments>

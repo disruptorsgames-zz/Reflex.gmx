@@ -109,7 +109,7 @@ instance_destroy();
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="o_apple">
+    <event eventtype="4" ename="o_powerup">
       <action>
         <libid>1</libid>
         <id>603</id>

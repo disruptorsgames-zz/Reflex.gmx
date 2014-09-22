@@ -75,10 +75,10 @@ speed = spd;
           <argument>
             <kind>1</kind>
             <string>/// Shrink
-if (x &lt; o_controller.x - 184)
+if (x - scale &lt; o_controller.x + 8)
 {
     move_towards_point(o_vortex.x, o_vortex.y, 2);
-    scale -= 0.25;
+    scale -= shrink;
 }
     
 if (scale &lt;= 0)
