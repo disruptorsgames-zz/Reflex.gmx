@@ -29,6 +29,10 @@
 window_set_fullscreen(true);
 
 // GUI
+title = "Hello";
+subtitle = "World";
+run = false;
+alarm[0] = 120;
 box_color = c_black;//make_colour_rgb(random(128), random(255), random(128));
 credits = 0;
 
@@ -43,12 +47,6 @@ base_h = 480;
 
 // math
 randomize();
-
-// create instances
-if (room == r_world)
-    instance_create(16, view_hview[0] / 2, o_blip);
-    
-instance_create(x - 250, view_yview[0] + view_hview[0] / 2, o_vortex);
 </string>
           </argument>
         </arguments>
@@ -136,6 +134,62 @@ display_set_gui_maximise(disp_w / gui_w, disp_h / gui_h, 0, 0);
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Clear Title
+title = "";
+subtitle = "";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Calculations
+if (run)
+{
+    if (!instance_exists(o_blip) &amp;&amp; title == "")
+        instance_create(16, view_hview[0] / 2, o_blip);
+    
+    if (!instance_exists(o_vortex))
+        instance_create(x - 250, view_yview[0] + view_hview[0] / 2, o_vortex);   
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -154,18 +208,50 @@ display_set_gui_maximise(disp_w / gui_w, disp_h / gui_h, 0, 0);
           <argument>
             <kind>1</kind>
             <string>/// Spawn
-if (current_time mod 128 == 0)
-    instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_wall);
-if (current_time mod 1337 == 0)
-    instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_powerup);
-//if (current_time mod 64 == 0)
-    //instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_block);
+if (run)
+{
+    if (current_time mod 128 == 0)
+        instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_wall);
+    if (current_time mod 1337 == 0)
+        instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_powerup);
+    //if (current_time mod 64 == 0)
+        //instance_create(view_xview[0] + view_wview[0] + random(360), view_yview[0] + random(view_hview[0]), o_block);
+}
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Titles
+if (string_length(title) &gt; 0)
+{
+    var xx = view_wview[0] / 2;
+    var yy = view_hview[0] / 2;
+    draw_rectangle_colour(0, yy - 64, view_wview[0], yy + 64, c_black, c_black, c_black, c_black, false);
+    draw_text_colour(xx - string_width(title), yy - 32, title, c_white, c_white, c_white, c_white, 1.0);
+    draw_text_colour(xx - string_width(subtitle), yy - 16, subtitle, c_white, c_white, c_white, c_white, 1.0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -260,9 +346,12 @@ draw_text(view_wview[0] - string_width(creds) - 16, view_hview[0] - string_heigh
           <argument>
             <kind>1</kind>
             <string>/// Line
-x = view_xview[0] + 200;
-y = view_yview[0];
-draw_line_color(x, y, x, y + view_hview[0], c_red, c_red);
+if (run)
+{
+    x = view_xview[0] + 200;
+    y = view_yview[0];
+    draw_line_color(x, y, x, y + view_hview[0], c_red, c_red);
+}
 </string>
           </argument>
         </arguments>

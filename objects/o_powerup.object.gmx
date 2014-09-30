@@ -32,7 +32,7 @@ base_c = color;
 scale = random(1) + 1;
 spd = random(2) + 2;
 dir = 180;
-shrink = 0.025;
+shrink = 0.01;
 
 // power
 r = colour_get_red(color);

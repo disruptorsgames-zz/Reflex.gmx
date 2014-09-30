@@ -16,7 +16,6 @@
   <scripts name="scripts">
     <script>scripts\ternary.gml</script>
   </scripts>
-  <fonts name="fonts"/>
   <objects name="objects">
     <object>objects\o_blip</object>
     <object>objects\o_block</object>
@@ -32,7 +31,7 @@
     <room>rooms\r_world</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41904.2665976273</constant>
+    <constant name="GM_build_date">41912.828720706</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>
